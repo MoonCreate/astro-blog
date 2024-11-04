@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<"button">;
+---
+
+<button {...Astro.props}>
+    <slot/>
+</button>
+
+<style>
+    button {
+        padding: 0.5rem 1rem;
+        margin: 0;
+        height: fit-content;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        background-color: hsl(0, 85%, 77%);
+        outline: none;
+        border: none;
+        transition: .2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+
+    button:hover {
+        transform: scale(1.2);
+    }
+</style>
