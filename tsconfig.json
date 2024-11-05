@@ -9,6 +9,7 @@
       "#layouts/*": ["src/layouts/*"],
       "#content/*": ["src/content/*"],
       "#styles/*": ["src/styles/*"],
+      "#helper/*": ["src/helper/*"],
     }
   }
 }

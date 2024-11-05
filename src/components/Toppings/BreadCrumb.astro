@@ -1,0 +1,55 @@
+---
+import { ChevronRightIcon, HomeIcon } from "astro-feather";
+type Props = {
+    slug: string;
+}
+
+const { slug } = Astro.props;
+
+let path = "";
+const paths = slug
+    .split("/")
+    .map(item => {
+        path += "/" + item;
+        return {
+            path,
+            name: item
+        }
+    });
+---
+
+<ul>
+    <li>
+        <a href="/" aria-label="Home">
+            <HomeIcon />
+        </a>
+    </li>
+{
+    paths.map(x => <li>
+            <ChevronRightIcon />
+        </li>
+        <li>
+            <a href={x.path}>{x.name}</a>
+        </li>
+    )
+}
+</ul>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 1rem;
+        li {
+            height: max-content;
+            display: contents;
+            a {
+                display: contents;
+            }
+        }
+    }
+</style>

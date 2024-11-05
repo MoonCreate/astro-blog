@@ -4,9 +4,16 @@ import type { HTMLAttributes } from "astro/types"
 type Props = HTMLAttributes<"button">;
 ---
 
-<button {...Astro.props}>
+<button {...Astro.props} id="basebutton">
     <slot/>
 </button>
+
+<script>
+    const button: HTMLButtonElement = document.querySelector("button#basebutton")!;
+    button.addEventListener("click", () => {
+        alert("halo");
+    });
+</script>
 
 <style>
     button {

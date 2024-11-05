@@ -1,0 +1,106 @@
+<script>
+    import { animate, type AnimationControls, spring } from "motion";
+
+    const wrapper = document.querySelector(".wrapper") as HTMLDivElement;
+    const button = document.querySelector(".change-wrapper") as HTMLButtonElement;
+
+    const animationControls = [] as AnimationControls[];
+
+    function sanitize(rect: DOMRect) {
+        return {
+            width: rect.width,
+            height: rect.height,
+            x: rect.x + scrollX,
+            y: rect.y + scrollY,
+        } as DOMRect;
+    }
+
+    function bindBoundingClientRect(anim = true) {
+        for (const animation of animationControls) animation.finish();
+        for (const content of document.querySelectorAll(".content") as NodeListOf<HTMLDivElement>) {
+            const rect = sanitize(content.getBoundingClientRect());
+            const current = content.getAttribute("data-current") ?? "";
+
+            content.setAttribute("data-before", current);
+            content.setAttribute("data-current", JSON.stringify(rect));
+
+            const beforeRect: DOMRect = !current ? {...rect, width: 0, height: 0} : JSON.parse(current);
+            if (!anim) continue;
+            const animation = animate(content, {
+                x: [beforeRect.x - rect.x, 0],
+                y: [beforeRect.y - rect.y, 0],
+                scaleX: [beforeRect.width / rect.width, 1],
+                scaleY: [beforeRect.height / rect.height, 1],
+                transformOrigin: "top left",
+            }, {
+                easing: spring({
+                    stiffness: 50,
+                }),
+            });
+
+            animationControls.push(animation);
+        }
+    }
+
+    const dirs = ["column", "row-reverse", "column-reverse", "row"];
+    bindBoundingClientRect(false);
+
+    button.addEventListener("click", () => {
+        const dir = dirs.shift()!;
+        wrapper.style.flexDirection = dir;
+        button.innerText = dir;
+        bindBoundingClientRect();
+        dirs.push(dir);
+    });
+
+    window.addEventListener("resize", () => bindBoundingClientRect(false));
+</script>
+
+<div class="container">
+    <div class="demo">
+        <div class="wrapper">
+            <div class="content" style="--color-content: var(--color-pink)">1</div>
+            <div class="content" style="--color-content: var(--color-mauve)">2</div>
+            <div class="content" style="--color-content: var(--color-red)">3</div>
+            <div class="content" style="--color-content: var(--color-maroon)">4</div>
+            <div class="content" style="--color-content: var(--color-sky)">5</div>
+            <div class="content" style="--color-content: var(--color-rosewater)">6</div>
+        </div>
+        <button class="change-wrapper">row</button>
+    </div>
+</div>
+
+<style>
+    .container {
+        .demo {
+            padding: var(--viewport-spacing);
+            background-color: hsl(var(--color-crust));
+            border: 2px dashed hsl(var(--color-overlay0));
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                height: 400px;
+                .content {
+                    flex-grow: 1;
+                    background-color: hsl(var(--color-content));
+                    will-change: transform;
+                }
+            }
+
+            button {
+                margin-top: 2rem;
+                margin-inline: auto;
+                border-radius: 6px;
+                padding: 12px;
+                outline: none;
+                background-color: hsl(var(--color-green));
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+</style>
