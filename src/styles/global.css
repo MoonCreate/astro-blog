@@ -54,6 +54,35 @@
 		67.9px 67.9px 108px -2.1px hsl(var(--shadow-color) / 0.34),
 		100px 100px 159.1px -2.5px hsl(var(--shadow-color) / 0.34);
 }
+
+html[data-theme="dark"] {
+	--color-rosewater: 10deg, 56%, 91%;
+	--color-flamingo: 0deg, 59%, 88%;
+	--color-pink: 316deg, 71%, 86%;
+	--color-mauve: 267deg, 84%, 81%;
+	--color-red: 343deg, 73%, 75%;
+	--color-maroon: 355deg, 65%, 72%;
+	--color-peach: 30deg, 93%, 73%;
+	--color-yellow: 41deg, 86%, 83%;
+	--color-green: 115deg, 54%, 76%;
+	--color-teal: 170deg, 57%, 73%;
+	--color-sky: 180deg, 71%, 73%;
+	--color-sapphire: 199deg, 76%, 69%;
+	--color-blue: 217deg, 92%, 75%;
+	--color-lavender: 226deg, 97%, 88%;
+	--color-text: 226deg, 64%, 88%;
+	--color-subtext1: 226deg, 35%, 86%;
+	--color-subtext0: 228deg, 24%, 72%;
+	--color-overlay2: 228deg, 13%, 63%;
+	--color-overlay1: 228deg, 11%, 54%;
+	--color-overlay0: 228deg, 10%, 45%;
+	--color-surface2: 234deg, 13%, 39%;
+	--color-surface1: 237deg, 16%, 33%;
+	--color-surface0: 237deg, 16%, 25%;
+	--color-base: 240deg, 9%, 15%;
+	--color-mantle: 240deg, 9%, 11%;
+	--color-crust: 240deg, 11%, 9%;
+}
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");

@@ -9,7 +9,6 @@
         .container-content {
             padding: var(--viewport-spacing);
             background-color: hsl(var(--color-crust));
-            /* border: 2px dashed hsl(var(--color-overlay0)); */
             box-shadow: var(--shadow-elevation-low);
             border-radius: 6px;
             display: flex;
@@ -17,4 +16,12 @@
             gap: 1rem;
         }
     }
+
+    html[data-theme="dark"] {
+        .container {
+            .container-content {
+                border: 2px solid hsl(var(--color-overlay0));
+                box-shadow: unset;
+            }
+        }
 </style>
