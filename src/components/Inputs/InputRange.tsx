@@ -9,13 +9,13 @@ export default function InputRange({class: className, ...props}: Props) {
         --webkit-appearance: none;
         appearance: none;
         background: transparent;
-        cursor: pointer;
 
         &::-webkit-slider-runnable-track {
             background-color: hsl(var(--color-base));
             height: calc(var(--slider-size) / 2);
             box-shadow: var(--shadow-elevation-low);
             border-radius: 50px;
+            cursor: pointer;
         }
 
         &::-webkit-slider-thumb {
@@ -28,9 +28,15 @@ export default function InputRange({class: className, ...props}: Props) {
             box-shadow: var(--shadow-elevation-low);
             border-radius: 50%;
             transition: .2s ease;
+            position: relative;
 
             &:hover {
                 background-color: hsl(var(--color-rosewater));
+                cursor: grab;
+            }
+
+            &:active {
+                cursor: grabbing;
             }
         }
     `;
