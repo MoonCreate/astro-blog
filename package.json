@@ -16,9 +16,16 @@
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/solid-js": "^4.4.2",
+    "@linaria/core": "^6.2.0",
+    "@linaria/react": "^6.2.1",
+    "@wyw-in-js/babel-preset": "^0.5.4",
     "astro": "^4.16.9",
     "astro-feather": "^1.0.0",
     "motion": "^10.18.0",
+    "solid-js": "^1.9.3",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@wyw-in-js/vite": "^0.5.4"
   }
 }

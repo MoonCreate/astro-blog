@@ -10,6 +10,10 @@
       "#content/*": ["src/content/*"],
       "#styles/*": ["src/styles/*"],
       "#helper/*": ["src/helper/*"],
-    }
+      "#hooks/*": ["src/hooks/*"],
+      "#animations/*": ["src/animations/*"],
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   }
 }

@@ -4,7 +4,9 @@ description: "Lorem ipsum dolor sit amet"
 pubDate: "Jun 01 2024"
 heroImage: "/blog-placeholder-5.jpg"
 ---
-import Wrapper from "#helper/using-mdx/Wrapper.astro";
+
+import FlexDemo from "#helper/using-mdx/FlexDemo";
+import Container from "#layouts/Container.astro";
 
 This theme comes with the [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) integration installed and configured in your `astro.config.mjs` config file. If you prefer not to use MDX, you can disable support by removing the integration from your config file.
 
@@ -19,7 +21,10 @@ If you have existing content authored in MDX, this integration will hopefully ma
 Here is how you import and use a UI component inside of MDX.  
 When you open this page in the browser, you should see the clickable button below.
 
-<Wrapper />
+<Container>
+    ### Flexbox!
+    <FlexDemo client:load />
+</Container>
 
 ## More Links
 
