@@ -6,6 +6,8 @@ import Footer from "#components/Footer.astro";
 import FormattedDate from "#components/FormattedDate.astro";
 import BreadCrumb from "#root/components/Toppings/BreadCrumb.astro";
 import { Image } from "astro:assets";
+import LikeButton from "#root/components/Toppings/LikeButton";
+import { FrownIcon, SmileIcon } from "astro-feather";
 
 type Props = CollectionEntry<"blog">["data"] & { slug: string };
 
@@ -105,6 +107,14 @@ const { title, description, pubDate, updatedDate, heroImage, slug } = Astro.prop
 	<body data-layout="blog-post">
 		<Header />
 		<main>
+			<LikeButton client:load>
+				<div data-like-button="liked" style="display: contents;">
+					<SmileIcon width={50} height={50} />
+				</div>
+				<div data-like-button="unliked" style="display: contents;">
+					<FrownIcon width={50} height={50} />
+				</div>
+			</LikeButton>
 			<article>
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
