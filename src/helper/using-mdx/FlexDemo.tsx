@@ -3,20 +3,17 @@ import { For } from "solid-js";
 import FlipDiv from "./FlipDiv";
 import InputRange from "#components/Inputs/InputRange";
 import { createMatcherRange } from "#root/hooks";
+import DemoWrapper from "#root/layouts/DemoWrapper";
 
 export default function FlexDemo() {
     const [directionControl, getDirection] = createMatcherRange(["row", "column", "row-reverse", "column-reverse"] as const);
     const [justifyControl, getJustifyControl] = createMatcherRange(["flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly"] as const);
     const [alignControl, getAlignControl] = createMatcherRange(["flex-start", "flex-end", "center", "baseline", "stretch"] as const);
 
-    const demoWrapperStyle = css`
+    const wrapperStyle = css`
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
         height: 400px;
-        background-color: hsl(var(--color-base));
-        border: 2px dashed hsl(var(--color-overlay0));
-    `;
+    `
 
     const childWrapperStyle = css`
         background-color: hsl(var(--color-content));
@@ -57,11 +54,14 @@ export default function FlexDemo() {
                 <InputRange {...justifyControl} />
             </label>
         </div>
-        <div style={{
+        <DemoWrapper
+            class={wrapperStyle}
+            style={{
                 "flex-direction": getDirection(),
                 "justify-content": getJustifyControl(),
                 "align-items": getAlignControl(),
-            }} class={demoWrapperStyle}>
+            }}
+        >
             <For each={["red", "blue", "yellow", "green"]}>
                 {
                     item => <FlipDiv
@@ -70,6 +70,6 @@ export default function FlexDemo() {
                         class={childWrapperStyle} />
                 }
             </For>
-        </div>
+        </DemoWrapper>
     </>;
 }

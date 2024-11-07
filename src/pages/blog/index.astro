@@ -62,7 +62,6 @@ const posts = (await getCollection("blog")).sort(
 				color: hsl(var(--color-subtext1));
 			}
 			ul a img {
-				box-shadow: var(--shadow-elevation-medium);
 			}
 			@media (max-width: 720px) {
 				ul {
@@ -77,6 +76,12 @@ const posts = (await getCollection("blog")).sort(
 				}
 				ul li:first-child .title {
 					font-size: 1.563em;
+				}
+			}
+
+			html[data-theme="light"] {
+				ul a img {
+					box-shadow: var(--shadow-elevation-medium);
 				}
 			}
 		</style>
