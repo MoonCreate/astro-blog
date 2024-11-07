@@ -1,9 +1,9 @@
 import { css } from "@linaria/core";
 import { For } from "solid-js";
-import FlipDiv from "./FlipDiv";
 import InputRange from "#components/Inputs/InputRange";
 import { createMatcherRange } from "#root/hooks";
 import DemoWrapper from "#root/layouts/DemoWrapper";
+import { Flipper, Flipped } from "#root/animations/flip";
 
 export default function FlexDemo() {
     const [directionControl, getDirection] = createMatcherRange(["row", "column", "row-reverse", "column-reverse"] as const);
@@ -62,14 +62,16 @@ export default function FlexDemo() {
                 "align-items": getAlignControl(),
             }}
         >
-            <For each={["red", "blue", "yellow", "green"]}>
-                {
-                    item => <FlipDiv
-                        style={{ "--color-content": `var(--color-${item})` }}
-                        flipState={() => [getDirection(), getAlignControl(), getJustifyControl()]}
-                        class={childWrapperStyle} />
-                }
-            </For>
+            <Flipper flipQuery={[getDirection(), getAlignControl(), getJustifyControl()]}>
+                <For each={["red", "blue", "yellow", "green"]}>
+                    {
+                        item => <Flipped flipKey={item}>
+                            <div style={{ "--color-content": `var(--color-${item})` }}
+                            class={childWrapperStyle}></div>
+                        </Flipped>
+                    }
+                </For>
+            </Flipper>
         </DemoWrapper>
     </>;
 }

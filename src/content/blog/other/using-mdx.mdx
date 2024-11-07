@@ -6,6 +6,7 @@ heroImage: "/blog-placeholder-5.jpg"
 ---
 
 import FlexDemo from "#helper/using-mdx/FlexDemo";
+import TodoListDemo from "#helper/using-mdx/TodoListDemo";
 import Container from "#layouts/Container.astro";
 
 This theme comes with the [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) integration installed and configured in your `astro.config.mjs` config file. If you prefer not to use MDX, you can disable support by removing the integration from your config file.
@@ -24,6 +25,11 @@ When you open this page in the browser, you should see the clickable button belo
 <Container>
     ### Flexbox!
     <FlexDemo client:load />
+</Container>
+
+<Container>
+    ### Todo List!
+    <TodoListDemo client:load />
 </Container>
 
 ## More Links
