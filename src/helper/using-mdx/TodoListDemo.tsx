@@ -3,6 +3,7 @@ import { css } from "@linaria/core";
 import { For, createSignal } from "solid-js";
 import { getBoundingClientRect } from "#root/utils";
 import { Flipper, Flipped } from "#root/animations/flip";
+import DemoButton from "#root/components/Button/DemoButton";
 
 export default function TodoListDemo() {
     const [getText, setText] = createSignal("");
@@ -25,40 +26,82 @@ export default function TodoListDemo() {
     const wrapperStyle = css`
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content minmax(10rem, 1fr) min-content;
         padding: 1rem;
         gap: 1rem;
         & > * {
             border: 2px dashed hsl(var(--color-overlay0));
-            padding: 1rem;
+            padding: 0rem;
+            display: flex;
+            flex-flow: row wrap;
+            gap: 1rem;
+            &:has(h3), &:has(form) {
+                justify-content: center;
+                border: none;
+            }
+            h3 {
+                margin: 0 !important;
+                margin-inline: auto;
+                padding: 0;
+                text-align: center;
+                height: min-content;
+            }
+        }
+        span {
+            padding-inline: 0.5rem
         }
     `;
 
     const controlStyle = css`
         grid-column: 1 / -1;
+        min-height: 0;
+        padding: .5rem;
+        form {
+            display: contents;
+        }
+        input {
+            outline: none;
+            border: none;
+            display: block;
+            width: 100%;
+            border-radius: 6px;
+            padding: .5rem;
+        }
     `;
 
     return <DemoWrapper class={wrapperStyle}>
+        <div>
+            <h3>Todo</h3>
+        </div>
+        <div>
+            <h3>Done</h3>
+        </div>
         <Flipper
-            flipQuery={getTodo()}
-            defaultRectState={() => getBoundingClientRect(ref)}
+            flipQuery={getTodo().join("")}
+            defaultRectState={() => ({...getBoundingClientRect(ref), width: 0, height: 0})}
             >
             <div>
                 <For each={getTodo().filter(todo => !todo.done)}>
-                    {todo => <Flipped flipKey={todo.id}>
-                        <div
+                    {todo => <Flipped flipKey={todo.id} isFlippedVanishWhenCleanup={false}>
+                        <DemoButton
+                            style="--button-color: var(--color-green)"
                             onclick={() => toggleTodo(todo.id)}>
-                            {todo.text}
-                        </div>
+                            <span>
+                                {todo.text}
+                            </span>
+                        </DemoButton>
                     </Flipped>}
                 </For>
             </div>
             <div>
                 <For each={getTodo().filter(todo => todo.done)}>
                     {todo => <Flipped flipKey={todo.id}>
-                        <div
+                        <DemoButton
                             onclick={() => removeTodo(todo.id)}>
-                            {todo.text}
-                        </div>
+                            <span>
+                                {todo.text}
+                            </span>
+                        </DemoButton>
                     </Flipped>}
                 </For>
             </div>

@@ -4,6 +4,7 @@ import { FlipperContext } from "./Flipper";
 type Props = {
     children: JSX.Element;
     flipKey: unknown;
+    isFlippedVanishWhenCleanup?: boolean;
 }
 
 export default function Flipped(props: Props) {
@@ -13,11 +14,17 @@ export default function Flipped(props: Props) {
     if (resolved() instanceof Array) throw new Error("Only one child allowed");
 
     onMount(() => {
-        context?.add(props.flipKey, resolved() as never);
+    const isFlippedVanishWhenCleanup = props.isFlippedVanishWhenCleanup ?? true;
+    const res = resolved() as HTMLElement;
+    context?.add(props.flipKey, res);
         onCleanup(() => {
-            context?.interupt(props.flipKey);
-        })
-    })
+            if (!isFlippedVanishWhenCleanup) {
+                context?.interupt();
+            } else {
+                context?.delete(props.flipKey);
+            }
+        });
+    });
 
     return <>
         {resolved()}
