@@ -41,10 +41,14 @@ export default function LikeButton(props: Props) {
         border: none;
         background-color: transparent;
         cursor: pointer;
-        position: fixed;
-        right: 0;
         display: grid;
         gap: 1rem;
+        grid-column: 2;
+        align-self: center;
+        width: max-content;
+        justify-self: center;
+        place-self: center;
+        margin-bottom: calc(var(--viewport-spacing) * -2);
         &> * {
             color: hsl(var(--color-rosewater));
         }
