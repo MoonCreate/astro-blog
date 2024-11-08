@@ -224,6 +224,7 @@ hr {
 ::-webkit-scrollbar {
 	appearance: none;
 	width: 5px;
+	height: 2.5px;
 }
 ::-webkit-scrollbar-track {
 	background: hsl(var(--color-base));

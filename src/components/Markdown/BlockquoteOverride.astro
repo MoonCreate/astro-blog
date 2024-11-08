@@ -1,0 +1,43 @@
+---
+import { InfoIcon } from "astro-feather";
+
+---
+<div class="container">
+    <blockquote {...Astro.props}>
+        <slot />
+    </blockquote>
+    <div class="iconic">
+        <InfoIcon width={30} height={30}/>
+    </div>
+</div>
+
+<style>
+    .container:hover {
+        .iconic {
+            transform: scale(1.5);
+        }
+    }
+    .iconic {
+        position: absolute;
+        top: -24px;
+        left: -13px;
+        background-color: hsl(var(--color-base));
+        height: 30px;
+        padding: 0px;
+        border-radius: 50%;
+        color: hsl(var(--color-sky));
+        transition: .5s ease;
+        @container (max-width: 906.3px) {
+            opacity: 0;
+        }
+    }
+
+    blockquote {
+        font-size: 1.2rem;
+        background-color: hsl(var(--color-sky) / 10%);
+        padding-top: 16px;
+        padding-bottom: 16px;
+        border-radius: 0 6px 6px 0;
+        position: relative;
+    }
+</style>

@@ -2,6 +2,8 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "#layouts/BlogPost.astro";
 import PreOverride from "#root/components/Markdown/PreOverride.astro";
+import AsideOverride from "#root/components/Markdown/AsideOverride.astro";
+import BlockquoteOverride from "#root/components/Markdown/BlockquoteOverride.astro";
 
 type Props = CollectionEntry<"blog">;
 
@@ -16,6 +18,8 @@ const { Content } = await post.render();
 	<Content components={
 		{
 			pre: PreOverride,
+			aside: AsideOverride,
+			blockquote: BlockquoteOverride,
 		}
 	}/>
 </BlogPost>
