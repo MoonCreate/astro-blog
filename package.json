@@ -22,10 +22,11 @@
     "astro": "^4.16.9",
     "astro-feather": "^1.0.0",
     "motion": "^10.18.0",
-    "solid-js": "^1.9.3",
-    "typescript": "^5.6.3"
+    "solid-js": "^1.9.3"
   },
   "devDependencies": {
-    "@wyw-in-js/vite": "^0.5.4"
+    "@styled/typescript-styled-plugin": "^1.0.1",
+    "@wyw-in-js/vite": "^0.5.4",
+    "typescript": "^5.6.3"
   }
 }

@@ -7,3 +7,9 @@ export function getBoundingClientRect(element: HTMLElement) {
         y: rect.y + window.scrollY,
     } as DOMRect;
 }
+
+export function promiseSetTimeout(durationMs: number): Promise<void> {
+    return new Promise(resolve => {
+        setTimeout(resolve, durationMs);
+    });
+}

@@ -1,10 +1,13 @@
+
 import { Flipped, Flipper } from "#root/animations/flip";
 import { getBoundingClientRect, promiseSetTimeout } from "#root/utils";
 import { css } from "@linaria/core";
 import { createSignal, For, onMount } from "solid-js";
 
-export default function PushDemo() {
+export default function SpliceDemo() {
     const [getAnimals, setAnimals] = createSignal<{ id: number, animal: string }[]>([]);
+    const [getSpliced, setSpliced] = createSignal<{ id: number, animal: string }[]>([]);
+    const [getSelectorArgs, setSelectorArgs] = createSignal<[number, number]>([0, 0]);
 
     let refInput: HTMLInputElement;
 
@@ -13,10 +16,15 @@ export default function PushDemo() {
         animal,
     }]);
 
+
     onMount(async () => {
         pushAnimal("marmut");
         await promiseSetTimeout(500);
         pushAnimal("kucing");
+        await promiseSetTimeout(500);
+        pushAnimal("tikus");
+        await promiseSetTimeout(500);
+        pushAnimal("merkaat");
     });
 
     const style = css`

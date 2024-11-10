@@ -60,38 +60,36 @@ console.log(angka.length) //7
 ```
 
 method `push()` berfungsi untuk memasukan data pada urutan terakhir array atau bisa dibilang memasukan data ke paling kanan wkwk
-```js
-let hewan = ["marmut", "kucing"];
-hewan.push("tikus");
-console.log(hewan); //["marmut", "kucing", "tikus"]
-```
 
 import PushDemo from "#helper/array/PushDemo";
 
 <Container>
-<PushDemo client:load/>
+<PushDemo client:visible/>
 </Container>
 
 method `pop()` berfungsi untuk menghapus elemen terkahir pada array, bisa dibilang ngehapus yang elemen array paling kanan wkwk
-```js
-let hewan = ["marmut", "kucing", "tikus"];
-hewan.pop();
-console.log(hewan); //["marmut", "kucing"];
-```
+
+import PopDemo from "#helper/array/PopDemo";
+
+<Container>
+<PopDemo client:visible/>
+</Container>
 
 method `shift()` berfungsi untuk menghapus elemen pertama pada array, bisa dibilang ngehapus yang paling kiri wkwk
-```js
-let hewan = ["marmut", "kucing", "tikus"];
-hewan.shift();
-console.log(hewan); //["kucing", "tikus"];
-```
+
+import ShiftDemo from "#helper/array/ShiftDemo";
+
+<Container>
+<ShiftDemo client:visible/>
+</Container>
 
 method `unshift()` berfungsi menambahkan data pada urutan pertama, bisa dibilang nambahin sesuatu dipaling kiri wkwk
-```js
-let hewan = ["marmut", "kucing"];
-hewan.unshift("tikus");
-console.log(hewan); //["tikus", "marmut", "kucing"];
-```
+
+import UnshiftDemo from "#helper/array/UnshiftDemo";
+
+<Container>
+<UnshiftDemo client:visible/>
+</Container>
 
 method `splice` berfungsi bisa menambahkan data, bisa menghapus data pada array, bisa dua duanya sekaligus tergantung isi parameter yang kalian berikan pada splice
 contoh `.splice(0,1,"gajah", "macan")` 
@@ -99,6 +97,12 @@ contoh `.splice(0,1,"gajah", "macan")`
 > - parameter pertama sebagai penentuan posisi mau di index ke berapa
 > - parameter kedua sebagai penentuan mau menghapus berapa data/elemen/item (bisa juga ga ngehapus apa apa kalau di kasih nilai 0)
 > - parameter sisanya, itu untuk nambahin data ke dalam array, jumlahnya bisa banyak
+
+import SpliceDemo from "#helper/array/SpliceDemo";
+
+<Container>
+<SpliceDemo client:visible/>
+</Container>
 
 ```js
 //contoh menghapus 1 item dari index nomor 1

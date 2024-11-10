@@ -1,22 +1,28 @@
 import { Flipped, Flipper } from "#root/animations/flip";
-import { getBoundingClientRect, promiseSetTimeout } from "#root/utils";
+import DemoButton from "#root/components/Button/DemoButton";
+import { promiseSetTimeout } from "#root/utils";
 import { css } from "@linaria/core";
 import { createSignal, For, onMount } from "solid-js";
 
-export default function PushDemo() {
+export default function PopDemo() {
     const [getAnimals, setAnimals] = createSignal<{ id: number, animal: string }[]>([]);
-
-    let refInput: HTMLInputElement;
 
     const pushAnimal = (animal: string) => setAnimals(animals => [...animals, {
         id: Date.now(),
         animal,
     }]);
 
+    const popAnimal = () => setAnimals(animals => {
+        animals.pop();
+        return [...animals];
+    });
+
     onMount(async () => {
         pushAnimal("marmut");
         await promiseSetTimeout(500);
         pushAnimal("kucing");
+        await promiseSetTimeout(500);
+        pushAnimal("tikus");
     });
 
     const style = css`
@@ -39,9 +45,6 @@ export default function PushDemo() {
     const declarationStyle = css`
         color: hsl(var(--color-red));
     `;
-    const functionStyle = css`
-        color: hsl(var(--color-mauve));
-    `;
 
     const commentStyle = css`
         color: hsl(var(--color-subtext0));
@@ -55,7 +58,6 @@ export default function PushDemo() {
 
     return <Flipper
         flipQuery={getAnimals()}
-        defaultRectState={() => getBoundingClientRect(refInput)}
     >
         <div class={wrapperStyle}>
             <div class={style}>
@@ -65,7 +67,7 @@ export default function PushDemo() {
                 <span>[</span>
                 <For each={getAnimals()}>
                     {
-                        x => <Flipped flipKey={x.id} isFlippedVanishWhenCleanup={false}>
+                        x => <Flipped flipKey={x.id}>
                             <span>
                                 <span class={stringStyle}>"{x.animal}"</span>,
                             </span>
@@ -77,25 +79,12 @@ export default function PushDemo() {
                 </Flipped>
             </div>
             <div class={style}>
-                <span>hewan.
-                    <span class={functionStyle}>push</span>
-                    (<span class={stringStyle}>
-                        "
-                        <input type="text"
-                            ref={e => refInput = e}
-                            class={stringStyle}
-                            onInput={e => {
-                                const length = e.target.value.length;
-                                e.target.style.width = `${length / 2}rem`;
-                            }}
-                            onChange={e => {
-                                pushAnimal(e.target.value);
-                                e.target.value = "";
-                            }} />"
-                    </span>
-                    );</span>
+                <span>hewan.</span>
+                <DemoButton onClick={() => popAnimal()} style="--button-color: var(--color-mauve);">
+                    <span style="padding-inline: 1rem;">pop()</span>
+                </DemoButton>
             </div>
-            <span class={commentStyle}>//Cobalah untuk mengetik</span>
+            <span class={commentStyle}>//Cobalah untuk mengklik tombol diatas</span>
         </div>
     </Flipper>
 }

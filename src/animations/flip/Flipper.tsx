@@ -18,7 +18,7 @@ type Context = {
 export const FlipperContext = createContext<Context>();
 
 export default function Flipper(props: Props) {
-    const rects = new Map<unknown, [DOMRect, HTMLElement, AnimationControls|null]>();
+    const rects = new Map<unknown, [DOMRect, HTMLElement, AnimationControls | null]>();
     const defered = createDeferred(() => props.flipQuery, { timeoutMs: 1 });
     let interupted = false;
     const add: Context["add"] = (uniqueKey, element) => {
@@ -74,7 +74,7 @@ export default function Flipper(props: Props) {
             element.setAttribute("data-flipped-opacity", element.style.visibility);
             element.style.visibility = "hidden";
         }
-    }) 
+    })
 
     createEffect(() => {
         defered();

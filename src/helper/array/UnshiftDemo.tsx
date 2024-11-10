@@ -1,22 +1,23 @@
+
 import { Flipped, Flipper } from "#root/animations/flip";
 import { getBoundingClientRect, promiseSetTimeout } from "#root/utils";
 import { css } from "@linaria/core";
 import { createSignal, For, onMount } from "solid-js";
 
-export default function PushDemo() {
+export default function UnshiftDemo() {
     const [getAnimals, setAnimals] = createSignal<{ id: number, animal: string }[]>([]);
 
     let refInput: HTMLInputElement;
 
-    const pushAnimal = (animal: string) => setAnimals(animals => [...animals, {
+    const unshiftAnimal = (animal: string) => setAnimals(animals => [{
         id: Date.now(),
         animal,
-    }]);
+    }, ...animals]);
 
     onMount(async () => {
-        pushAnimal("marmut");
+        unshiftAnimal("marmut");
         await promiseSetTimeout(500);
-        pushAnimal("kucing");
+        unshiftAnimal("kucing");
     });
 
     const style = css`
@@ -78,7 +79,7 @@ export default function PushDemo() {
             </div>
             <div class={style}>
                 <span>hewan.
-                    <span class={functionStyle}>push</span>
+                    <span class={functionStyle}>unshift</span>
                     (<span class={stringStyle}>
                         "
                         <input type="text"
@@ -89,7 +90,7 @@ export default function PushDemo() {
                                 e.target.style.width = `${length / 2}rem`;
                             }}
                             onChange={e => {
-                                pushAnimal(e.target.value);
+                                unshiftAnimal(e.target.value);
                                 e.target.value = "";
                             }} />"
                     </span>
